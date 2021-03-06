@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const validator = require('validator');
 
 const strings = require('./strings');
 
@@ -32,7 +31,6 @@ const UserSchema = new mongoose.Schema(
         verified: {
             type: Boolean,
             required: true,
-            default: true,
         },
         email: {
             type: String,
@@ -40,11 +38,9 @@ const UserSchema = new mongoose.Schema(
             index: true,
             trim: true,
             unique: true,
-            validate: validator.isEmail,
         },
         password: {
             type: String,
-            minlength: 6,
         },
         name: {
             type: String,

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { check, validationResult } = require('express-validator');
 
 const User = require('../config/db').mongoose.model('user');
 const { mailer } = require('../services/mailer');
@@ -8,6 +9,11 @@ const strings = require('../lib/strings');
 
 const createUser = async (req, res, next) => {
     try {
+        const errors = validationResult(req);
+        const e = errors.errors;
+        if (!errors.isEmpty()) {
+            return next(new Error(e[0].msg));
+        }
         let user = await User.findOne({ email: req.body.email });
         if (user && user.googleId) next(new Error(strings.ERR_GOOGLE_USER));
         else if (user && user.facebookId)
@@ -167,7 +173,26 @@ const getActiveUser = async (req, res) => {
     res.json({ status: 'success', data: { user: req.user } });
 };
 
-router.post('/user/signup', createUser);
+router.post(
+    '/user/signup',
+    [
+        check('email', strings.ERR_INVALID_EMAIL)
+            .isEmail()
+            .trim()
+            .escape()
+            .normalizeEmail(),
+        check('password')
+            .isLength({ min: 8 })
+            .withMessage(strings.ERR_INVALID_PASSWORD)
+            .matches('[0-9]')
+            .withMessage(strings.ERR_INVALID_PASSWORD)
+            .matches('[A-Z]')
+            .withMessage(strings.ERR_INVALID_PASSWORD)
+            .trim()
+            .escape(),
+    ],
+    createUser
+);
 router.get('/user/profile', auth, getActiveUser);
 router.get('/user/list', auth, getUserList);
 router.post('/user/reset-password', sendPasswordResetToken);
