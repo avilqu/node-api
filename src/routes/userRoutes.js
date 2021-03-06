@@ -182,12 +182,12 @@ router.post(
             .escape()
             .normalizeEmail(),
         check('password')
-            .isLength({ min: 8 })
+            .isLength({ min: 6 })
             .withMessage(strings.ERR_INVALID_PASSWORD)
-            .matches('[0-9]')
-            .withMessage(strings.ERR_INVALID_PASSWORD)
-            .matches('[A-Z]')
-            .withMessage(strings.ERR_INVALID_PASSWORD)
+            // .matches('[0-9]')
+            // .withMessage(strings.ERR_INVALID_PASSWORD)
+            // .matches('[A-Z]')
+            // .withMessage(strings.ERR_INVALID_PASSWORD)
             .trim()
             .escape(),
     ],
