@@ -1,0 +1,54 @@
+{
+    "name": "node-api",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "export NODE_ENV=dev && node src/index.js",
+        "dev": "export NODE_ENV=dev && nodemon --exec node src/index.js --trace-sync-io --trace-warnings",
+        "prod": "export NODE_ENV=prod && node src/index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cookie-session": "^2.0.0-beta.3",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "express-fileupload": "^1.2.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.11.18",
+        "nodemailer": "^6.5.0",
+        "passport": "^0.4.1",
+        "passport-facebook": "^3.0.0",
+        "passport-google-oauth20": "^2.0.0",
+        "passport-local": "^1.0.0",
+        "validator": "^13.5.2"
+    },
+    "devDependencies": {
+        "eslint": "^7.21.0",
+        "eslint-config-eslint": "^7.0.0",
+        "nodemon": "^2.0.7"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true,
+            "es2021": true,
+            "commonjs": true
+        },
+        "extends": [
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "ecmaVersion": 12
+        },
+        "rules": {
+            "no-unused-vars": "warn"
+        }
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "singleQuote": true,
+        "arrowParens": "always"
+    }
+}
