@@ -33,7 +33,6 @@ passport.use(
                     done(new Error(strings.ERR_WRONG_CREDENTIALS));
                 else return done(null, user);
             } catch (e) {
-                console.log('Catch');
                 return done(e);
             }
         }

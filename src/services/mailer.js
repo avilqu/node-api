@@ -10,8 +10,8 @@ const transport = nodemailer.createTransport({
 });
 
 const options = {
-    name: 'PublicApp',
-    short: 'PublicApp',
+    name: 'node-api',
+    short: 'node-api',
     sender: 'avilqu@gmail.com',
 };
 
