@@ -63,12 +63,18 @@ passport.use(
                     user = await User.findOne({
                         email: profile.emails[0].value,
                     });
-                    if (user) done(new Error(strings.ERR_EXISTING_USER), false);
+                    if (user) {
+                        user.googleId = profile.id;
+                        user.pic = profile.photos[0].value;
+                        user.save();
+                        return done(null, user);
+                    }
                     const newUser = await new User({
                         googleId: profile.id,
                         email: profile.emails[0].value,
                         name: profile.displayName,
                         pic: profile.photos[0].value,
+                        verified: true,
                     }).save();
                     return done(null, newUser);
                 }
@@ -104,12 +110,18 @@ passport.use(
                     user = await User.findOne({
                         email: profile.emails[0].value,
                     });
-                    if (user) done(new Error(strings.ERR_EXISTING_USER));
+                    if (user) {
+                        user.facebookId = profile.id;
+                        user.pic = profile.photos[0].value;
+                        user.save();
+                        return done(null, user);
+                    }
                     const newUser = await new User({
                         facebookId: profile.id,
                         email: profile.emails[0].value,
                         name: profile.displayName,
                         pic: profile.photos[0].value,
+                        verified: true,
                     }).save();
                     return done(null, newUser);
                 }
