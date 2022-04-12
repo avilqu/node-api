@@ -69,7 +69,11 @@ const verifyUser = async (req, res, next) => {
 const sendPasswordResetToken = async (req, res, next) => {
     try {
         const user = await User.findOne({ email: req.body.email });
-        if (!user) next(new Error(strings.ERR_NO_USER));
+        if (!user)
+            return res.json({
+                status: 'success',
+                message: strings.INFO_PASSWORD_RESET_LINK,
+            });
         else {
             const token = user.generateToken('1h', 'password');
             await mailer.resetPassword({

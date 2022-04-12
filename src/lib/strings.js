@@ -21,7 +21,8 @@ module.exports = {
     // Info messages
     INFO_ACTIVATION_LINK: 'An activation link was sent by email.',
     INFO_USER_ACTIVATED: 'User is now activated.',
-    INFO_PASSWORD_RESET_LINK: 'A reset link was sent by email.',
+    INFO_PASSWORD_RESET_LINK:
+        'A reset link will be sent by email if the user is found.',
     INFO_PASSWORD_SAVED: 'Password was saved.',
     INFO_USER_SAVED: 'User was saved.',
     INFO_USER_DELETED: 'User was deleted.',
