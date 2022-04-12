@@ -1,6 +1,6 @@
 module.exports = {
     // Error messages
-    ERR_INVALID_TOKEN: 'Invalid user token.',
+    ERR_INVALID_TOKEN: 'Invalid token.',
     ERR_NOT_LOGGED: 'Not logged in.',
     ERR_UNAUTHORIZED: 'Unauthorized.',
     ERR_WRONG_CREDENTIALS: 'Wrong credentials.',
@@ -19,8 +19,8 @@ module.exports = {
     ERR_DEFAULT: 'Something went wrong.',
 
     // Info messages
-    INFO_ACTIVATION_LINK: 'An activation link was sent by email.',
-    INFO_USER_ACTIVATED: 'User is now activated.',
+    INFO_ACTIVATION_LINK: 'An activation link will be sent by email.',
+    INFO_USER_ACTIVATED: 'User is activated. You can now login.',
     INFO_PASSWORD_RESET_LINK:
         'A reset link will be sent by email if the user is found.',
     INFO_PASSWORD_SAVED: 'Password was saved.',

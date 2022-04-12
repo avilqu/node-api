@@ -28,7 +28,7 @@ const createUser = async (req, res, next) => {
             });
             await user.save();
             const token = user.generateToken();
-            await mailer.newUser({
+            mailer.newUser({
                 name: user.name,
                 email: user.email,
                 baseUrl: req.headers.host,
@@ -76,7 +76,7 @@ const sendPasswordResetToken = async (req, res, next) => {
             });
         else {
             const token = user.generateToken('1h', 'password');
-            await mailer.resetPassword({
+            mailer.resetPassword({
                 email: user.email,
                 baseUrl: req.headers.host,
                 id: user.id,
