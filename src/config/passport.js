@@ -29,8 +29,8 @@ passport.use(
                     (user.password && !user.validPassword(password))
                 )
                     done(new Error(strings.ERR_WRONG_CREDENTIALS));
-                else if (user && (user.googleId || user.facebookId))
-                    done(new Error(strings.ERR_WRONG_CREDENTIALS));
+                // else if (user && (user.googleId || user.facebookId))
+                //     done(new Error(strings.ERR_WRONG_CREDENTIALS));
                 else return done(null, user);
             } catch (e) {
                 return done(e);
