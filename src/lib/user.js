@@ -32,6 +32,11 @@ const UserSchema = new mongoose.Schema(
             type: Boolean,
             required: true,
         },
+        access: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
         email: {
             type: String,
             required: true,

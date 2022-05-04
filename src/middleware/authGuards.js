@@ -1,13 +1,10 @@
 const strings = require('../lib/strings');
 
-const authGuards = {
-    logged: (req, res, next) => {
-        if (!req.user) {
-            next(new Error(strings.ERR_NOT_LOGGED));
-        }
-        next();
-    },
-    isUser: (req, res, next) => {},
+const isAdmin = (req, res, next) => {
+    if (req.user.access < 3) {
+        next(new Error(strings.ERR_UNAUTHORIZED));
+    }
+    next();
 };
 
 const auth = (req, res, next) => {
@@ -17,4 +14,4 @@ const auth = (req, res, next) => {
     next();
 };
 
-module.exports = { auth };
+module.exports = { auth, isAdmin };
